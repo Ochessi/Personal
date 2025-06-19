@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian's Blog | Tech & Photography</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="fade-in">
+        <nav>
+            <div class="logo">Brian Ochessi</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle">🌓</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="blog-container">
+        <h1>My Blog</h1>
+        <div id="blog-posts" class="posts-grid">
+            <!-- Blog posts load dynamically from JSON -->
+        </div>
+    </main>
+
+    <script>
+        // Load blog posts from JSON
+        fetch('../data/blog.json')
+            .then(response => response.json())
+            .then(posts => {
+                const container = document.getElementById('blog-posts');
+                posts.forEach(post => {
+                    container.innerHTML += `
+                        <article class="post-card">
+                            <img src="assets/images/blog/${post.image}" alt="${post.title}">
+                            <div class="post-content">
+                                <h2>${post.title}</h2>
+                                <p class="date">${post.date}</p>
+                                <p>${post.excerpt}</p>
+                                <a href="post.html?id=${post.id}" class="read-more">Read More</a>
+                            </div>
+                        </article>
+                    `;
+                });
+            });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

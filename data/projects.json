@@ -1,0 +1,26 @@
+[
+    {
+        "title": "MMU Hackathon Winner",
+        "description": "Campus resource management system using Python and Flask",
+        "tags": ["python", "web"],
+        "image": "hackathon.jpg",
+        "code": "https://github.com/yourusername/hackathon-project",
+        "demo": "https://yourdemo.com"
+    },
+    {
+        "title": "Portfolio Website",
+        "description": "This responsive portfolio built with HTML/CSS/JS",
+        "tags": ["web"],
+        "image": "portfolio.jpg",
+        "code": "https://github.com/yourusername/portfolio",
+        "demo": null
+    },
+    {
+        "title": "Java Inventory System",
+        "description": "Desktop application for small business inventory management",
+        "tags": ["java"],
+        "image": "inventory.jpg",
+        "code": "https://github.com/yourusername/inventory-system",
+        "demo": null
+    }
+]

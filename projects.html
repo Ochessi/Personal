@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian's Projects | Software Engineer</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation (Consistent across all pages) -->
+    <header class="fade-in">
+        <nav>
+            <div class="logo">Brian Ochessi</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="theme-toggle">🌓</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Projects Section -->
+    <main class="projects-container">
+        <div class="container">
+            <h1 class="slide-up">My Projects</h1>
+            <p class="subtitle fade-in">A showcase of my technical work and achievements</p>
+            
+            <!-- Projects Filter -->
+            <div class="project-filters fade-in">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="java">Java</button>
+            </div>
+            
+            <!-- Dynamic Projects Grid -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects load here from JSON -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (Consistent across all pages) -->
+    <footer class="fade-in">
+        <p>&copy; 2025 Brian Ochessi. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/brian-ochessi" target="_blank">LinkedIn</a>
+            <a href="https://github.com/Ochessi" target="_blank">GitHub</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Load projects from JSON
+        fetch('data/projects.json')
+            .then(response => response.json())
+            .then(projects => {
+                const grid = document.getElementById('projects-grid');
+                
+                projects.forEach(project => {
+                    grid.innerHTML += `
+                        <div class="project-card" data-tags="${project.tags}">
+                            <div class="project-image">
+                                <img src="assets/images/projects/${project.image}" alt="${project.title}">
+                                <div class="project-links">
+                                    ${project.demo ? `<a href="${project.demo}" target="_blank" class="demo-btn">Live Demo</a>` : ''}
+                                    <a href="${project.code}" target="_blank" class="code-btn">View Code</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>${project.title}</h3>
+                                <p>${project.description}</p>
+                                <div class="project-tags">
+                                    ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Filter functionality
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Update active button
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        
+                        // Filter projects
+                        const filter = btn.dataset.filter;
+                        const projects = document.querySelectorAll('.project-card');
+                        
+                        projects.forEach(project => {
+                            if (filter === 'all' || project.dataset.tags.includes(filter)) {
+                                project.style.display = 'block';
+                            } else {
+                                project.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

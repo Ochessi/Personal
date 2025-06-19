@@ -1,0 +1,17 @@
+{
+    "profile": "A Software Engineering student at Multimedia University of Kenya. Possess skills in coding, proficient in three languages and with good social skills. Keen to pursue a career in tech as a software engineer and developer.",
+    "education": [
+        {
+            "institution": "Multimedia University of Kenya",
+            "period": "2022 - 2027",
+            "degree": "BSc. Software Engineering",
+            "details": "Key Modules: Data Structures, Software Architecture, Cybersecurity"
+        }
+    ],
+    "skills": ["HTML/CSS", "Python", "Java", "JavaScript", "Git"],
+    "languages": [
+        {"name": "English", "level": "Expert"},
+        {"name": "Kiswahili", "level": "Native"},
+        {"name": "Spanish", "level": "Fluent"}
+    ]
+}

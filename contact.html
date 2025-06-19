@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Brian | Software Engineer</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="fade-in">
+        <nav>
+            <div class="logo">Brian Ochessi</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><button id="theme-toggle">🌓</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact-container">
+        <h1>Get In Touch</h1>
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" id="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject">
+                    <option value="work">Work Opportunity</option>
+                    <option value="question">Technical Question</option>
+                    <option value="photography">Photography Inquiry</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+        <div id="form-success" style="display: none;">
+            <h3>Thank you! I'll respond within 48 hours.</h3>
+        </div>
+    </main>
+
+    <script>
+        // Form submission handler
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('form-success').style.display = 'block';
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                alert('Error: Please try again later.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            }
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
