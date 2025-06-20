@@ -29,14 +29,14 @@
 
     <script>
         // Load blog posts from JSON
-        fetch('../data/blog.json')
+        fetch('/data/blog.json')
             .then(response => response.json())
             .then(posts => {
                 const container = document.getElementById('blog-posts');
                 posts.forEach(post => {
                     container.innerHTML += `
                         <article class="post-card">
-                            <img src="assets/images/blog/${post.image}" alt="${post.title}">
+                            <img src="assets/images/${post.image}" alt="${post.title}">
                             <div class="post-content">
                                 <h2>${post.title}</h2>
                                 <p class="date">${post.date}</p>

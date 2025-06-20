@@ -6,6 +6,7 @@
     --light: #ecf0f1;
     --gray: #95a5a6;
     --danger: #e74c3c;
+    --accent: #ff9800;
   }
   
   [data-theme="dark"] {
@@ -108,19 +109,27 @@
   
   /* ===== Hero Section ===== */
   .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('../images/hero-bg.jpg') center/cover no-repeat;
-    color: white;
-    text-align: center;
-    margin-top: -4rem; /* Counteract fixed header */
+    background: url('../images/BG4.jpeg') center/cover no-repeat;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 62, 80, 0.7);
+    z-index: 1;
   }
   
   .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
   }
   
   .hero h1 {
@@ -204,6 +213,37 @@
     padding: 0.3rem 0.8rem;
     border-radius: 50px;
     font-size: 0.9rem;
+  }
+
+  .skills ul, .skills li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skills li, .languages li {
+    background: var(--accent);
+    color: #fff;
+    display: inline-block;
+    margin: 0.3rem 0.5rem 0.3rem 0;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: skillFadeIn 0.6s forwards;
+  }
+
+  .skills li:nth-child(1), .languages li:nth-child(1) { animation-delay: 0.1s; }
+.skills li:nth-child(2), .languages li:nth-child(2) { animation-delay: 0.2s; }
+.skills li:nth-child(3), .languages li:nth-child(3) { animation-delay: 0.3s; }
+.skills li:nth-child(4), .languages li:nth-child(4) { animation-delay: 0.4s; }
+.skills li:nth-child(5), .languages li:nth-child(5) { animation-delay: 0.5s; }
+
+
+@keyframes skillFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   
   /* ===== Projects Section ===== */
